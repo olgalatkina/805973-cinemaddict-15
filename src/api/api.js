@@ -1,5 +1,5 @@
 import { Sourses, Method } from '../const';
-import FilmsModel from '../model/films';
+// import FilmsModel from '../model/films';
 
 export default class Api {
   constructor(endPoint, authorization) {
@@ -10,27 +10,25 @@ export default class Api {
   getMovies() {
     return this._load({
       url: Sourses.MOVIES,
-      method: Method.GET,
-    })
-      .then(Api.toJSON)
-      .then((films) => films.map(FilmsModel.adaptToClient));
-  }
-
-  getComments() {
-    return this._load({
-      url: Sourses.COMMENTS,
-      method: Method.GET,
     })
       .then(Api.toJSON);
+      // .then((films) => films.map(FilmsModel.adaptToClient));
   }
 
-  getData() {
-    Promise.all([
-      this.getMovies,
-      this.getComments,
-    ])
-      .catch(Api.catchError);
-  }
+  // getComments() {
+  //   return this._load({
+  //     url: Sourses.COMMENTS,
+  //   })
+  //     .then(Api.toJSON);
+  // }
+
+  // getData() {
+  //   return Promise.all([
+  //     this.getMovies(),
+  //     this.getComments(),
+  //   ])
+  //     .catch(Api.catchError);
+  // }
 
   updateMovie(film) {
     return this._load({
