@@ -1,5 +1,5 @@
 import { Sourses, Method } from '../const';
-// import FilmsModel from '../model/films';
+import MoviesModel from '../model/movies';
 
 export default class Api {
   constructor(endPoint, authorization) {
@@ -11,8 +11,8 @@ export default class Api {
     return this._load({
       url: Sourses.MOVIES,
     })
-      .then(Api.toJSON);
-      // .then((films) => films.map(FilmsModel.adaptToClient));
+      .then(Api.toJSON)
+      .then((films) => films.map(MoviesModel.adaptToClient));
   }
 
   // getComments() {
@@ -34,7 +34,7 @@ export default class Api {
     return this._load({
       url: `${Sourses.MOVIES}/${film.id}`,
       method: Method.PUT,
-      body: JSON.stringify(FilmsModel.adaptToServer(film)),
+      body: JSON.stringify(MoviesModel.adaptToServer(film)),
       headers: new Headers({'Content-Type': 'application/json'}),
     })
       .then(Api.toJSON)
