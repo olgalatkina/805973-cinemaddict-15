@@ -1,7 +1,7 @@
 # Проект «Киноман»
 
 * Студент: [Ольга Латкина](https://up.htmlacademy.ru/ecmascript/15/user/805973).
-* Наставник: `Неизвестно`.
+* Наставник: [Виктор Кан](https://htmlacademy.ru/profile/viktorkan).
 
 ---
 
