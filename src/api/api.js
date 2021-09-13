@@ -15,22 +15,7 @@ export default class Api {
       .then((films) => films.map(MoviesModel.adaptToClient));
   }
 
-  // getComments() {
-  //   return this._load({
-  //     url: Sourses.COMMENTS,
-  //   })
-  //     .then(Api.toJSON);
-  // }
-
-  // getData() {
-  //   return Promise.all([
-  //     this.getMovies(),
-  //     this.getComments(),
-  //   ])
-  //     .catch(Api.catchError);
-  // }
-
-  updateMovie(film) {
+  updateFilm(film) {
     return this._load({
       url: `${Sourses.MOVIES}/${film.id}`,
       method: Method.PUT,
@@ -51,9 +36,16 @@ export default class Api {
       .then(Api.toJSON);
   }
 
-  addComment(comment) {
+  getComments(film) {
     return this._load({
-      url: `${Sourses.COMMENTS}/${comment.id}`,
+      url: `${Sourses.COMMENTS}/${film.id}`,
+    })
+      .then(Api.toJSON);
+  }
+
+  addComment(film) {
+    return this._load({
+      url: `${Sourses.COMMENTS}/${film.id}`,
       method: `${Method.POST}`,
       body: JSON.stringify(comment),
       headers: new Headers({'Content-Type': 'application/json'}),

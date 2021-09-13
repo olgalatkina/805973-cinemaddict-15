@@ -6,13 +6,14 @@ export default class Comments extends AbstractObserver {
     this._comments = [];
   }
 
-  // setComments(comments) {
-  //   this._comments = [...comments];
-  // }
+  setComments(updateType, comments) {
+    this._comments = [...comments];
+    this._notify(updateType);
+  }
 
-  // getComments() {
-  //   return this._comments;
-  // }
+  getComments() {
+    return this._comments;
+  }
 
   addComment(updateType, update) {
     this._comments = [
