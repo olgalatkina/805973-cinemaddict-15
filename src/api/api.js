@@ -12,7 +12,7 @@ export default class Api {
       url: Sourses.MOVIES,
     })
       .then(Api.toJSON)
-      .then((films) => films.map(MoviesModel.adaptToClient));
+      .then((movies) => movies.map(MoviesModel.adaptToClient));
   }
 
   updateFilm(film) {

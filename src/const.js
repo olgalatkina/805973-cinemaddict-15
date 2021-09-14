@@ -18,4 +18,37 @@ export const FilterType = {
   FAVORITES: 'Favorites',
 }
 
+export const UpdateType = {
+  INIT: 'init',
+}
+
+export const MenuItem = {
+  ALL: 'All movies',
+  WATCHLIST: 'Watchlist',
+  HISTORY: 'History',
+  FAVORITES: 'Favorites',
+  STATS: 'Stats',
+}
+
+export const Rank = {
+  NOTHING: '',
+  NOVICE: 'Novice',
+  FAN: 'Fan',
+  MUVI_BUFF: 'Movie buff',
+}
+
+export const SortType = {
+  DEFAULT: 'Sort by default',
+  DATE: 'Sort by date',
+  RATING: 'Sort by rating',
+}
+
+export const StatsFilterType = {
+  ALL_TIME: 'all-time',
+  TODAY: 'today',
+  WEEK: 'week',
+  MONTH: 'month',
+  YEAR: 'year',
+}
+
 export const SHAKE_ANIMATION_TIMEOUT = 600;
