@@ -1,11 +1,80 @@
-import AbstractView from './abstract';
+import Chart from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import SmartView from './smart';
 import { getRank,
   capitalize,
   getWatchedMovies,
   getTopGenre,
-  getTotalDuration } from '../utils/common';
-
+  getTotalDuration,
+  getStatsByGenre } from '../utils/common';
 import { StatsFilterType } from '../const';
+
+const BAR_HEIGHT = 50;
+
+const renderChart = (ctx, movies) => { // TODO: отсортировать по убыванию, на вход отфильтрованные alltime|...|year
+  const watchedMovies = getWatchedMovies(movies);
+  const genres = getStatsByGenre(watchedMovies);
+  const labels = [...Object.keys(genres)];
+  const data = [...Object.values(genres)];
+  ctx.height = BAR_HEIGHT * labels.length;
+
+  return new Chart(ctx, {
+    plugins: [ChartDataLabels],
+    type: 'horizontalBar',
+    data: {
+      labels,
+      datasets: [{
+        data,
+        backgroundColor: '#ffe800',
+        hoverBackgroundColor: '#ffe800',
+        anchor: 'start',
+      }],
+    },
+    options: {
+      plugins: {
+        datalabels: {
+          font: {
+            size: 20,
+          },
+          color: '#ffffff',
+          anchor: 'start',
+          align: 'start',
+          offset: 40,
+        },
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            fontColor: '#ffffff',
+            padding: 100,
+            fontSize: 20,
+          },
+          gridLines: {
+            display: false,
+            drawBorder: false,
+          },
+          barThickness: 24,
+        }],
+        xAxes: [{
+          ticks: {
+            display: false,
+            beginAtZero: true,
+          },
+          gridLines: {
+            display: false,
+            drawBorder: false,
+          },
+        }],
+      },
+      legend: {
+        display: false,
+      },
+      tooltips: {
+        enabled: false,
+      },
+    },
+  });
+}
 
 const createStatsFiltersItemTemplate = (type, currentStatsFilterType) => (
   `<input
@@ -56,14 +125,39 @@ const createStatsTemplate = (movies, currentStatsFilterType) => {
   </section>`
 };
 
-export default class Stats extends AbstractView { // TODO: переключение фильтров
+export default class Stats extends SmartView { // TODO: переключение фильтров
   constructor(movies, currentStatsFilterType) {
     super();
     this._movies = movies;
     this._currentStatsFilterType = currentStatsFilterType;
+
+    this._chart = null;
+    this._setCharts();
   }
 
   getTemplate() {
     return createStatsTemplate(this._movies, this._currentStatsFilterType);
+  }
+
+  removeElement() {
+    super.removeElement();
+
+    if (this._chart !== null) {
+      this._chart = null;
+    }
+  }
+
+  restoreHandlers() {
+    this._setCharts();
+  }
+
+  _setCharts() {
+    if (this._chart !== null) {
+      this._chart = null;
+    }
+
+    const chartCtx = this.getElement().querySelector('.statistic__chart');
+
+    this._chart = renderChart(chartCtx, this._movies);
   }
 }
