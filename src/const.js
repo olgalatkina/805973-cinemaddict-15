@@ -51,4 +51,12 @@ export const StatsFilterType = {
   YEAR: 'year',
 }
 
+
+export const EmojiList = {
+  ANGRY: 'angry',
+  PUKE: 'puke',
+  SLEEPING: 'sleeping',
+  SMILE: 'smile',
+}
+
 export const SHAKE_ANIMATION_TIMEOUT = 600;

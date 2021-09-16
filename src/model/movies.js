@@ -45,7 +45,7 @@ export default class Movies extends AbstractObserver {
       country: film.film_info.release.release_country,
       runtime: film.film_info.runtime,
       title: film.film_info.title,
-      totalRairing: film.film_info.total_rating,
+      rating: film.film_info.total_rating,
       writers: film.film_info.writers,
       isWatched: film.user_details.already_watched,
       isFavorite: film.user_details.favorite,
@@ -77,7 +77,7 @@ export default class Movies extends AbstractObserver {
         },
         'runtime': film.runtime,
         'title': film.title,
-        'total_rating': film.totalRairing,
+        'total_rating': film.rating,
         'writers': film.writers,
       },
       'user_details': {

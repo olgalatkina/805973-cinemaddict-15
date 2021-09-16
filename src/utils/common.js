@@ -60,7 +60,7 @@ export const getFilmDuration = (runtime) => {
   const hours = Math.floor(runtime / 60);
   const minutes = runtime % 60;
   const isHours = hours > 0;
-  return `${isHours ? hours : ''}${isHours ? 'h' : ''} ${minutes}m`;
+  return `${isHours ? hours : ''}${isHours ? 'h ' : ''}${minutes}m`;
 };
 
 export const capitalize = (text) => `${text[0].toUpperCase()}${text.substr(1)}`;
