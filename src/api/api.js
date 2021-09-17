@@ -43,9 +43,9 @@ export default class Api {
       .then(Api.toJSON);
   }
 
-  addComment(film) {
+  addComment(id) {
     return this._load({
-      url: `${Sourses.COMMENTS}/${film.id}`,
+      url: `${Sourses.COMMENTS}/${id}`,
       method: `${Method.POST}`,
       body: JSON.stringify(comment),
       headers: new Headers({'Content-Type': 'application/json'}),

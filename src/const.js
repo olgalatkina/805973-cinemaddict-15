@@ -19,7 +19,10 @@ export const FilterType = {
 }
 
 export const UpdateType = {
-  INIT: 'init',
+  PATCH: 'PATCH',
+  MINOR: 'MINOR',
+  MAJOR: 'MAJOR',
+  INIT: 'INIT',
 }
 
 export const MenuItem = {
@@ -57,6 +60,17 @@ export const EmojiList = {
   PUKE: 'puke',
   SLEEPING: 'sleeping',
   SMILE: 'smile',
+}
+
+export const UserAction = {
+  UPDATE_FILM: 'UPDATE_FILM',
+  ADD_COMMENT: 'ADD_COMMENT',
+  DELETE_COMMENT: 'dELETE_COMMENT',
+}
+
+export const Mode = {
+  DEFAULT: 'DEFAULT',
+  EDITING: 'EDITING',
 }
 
 export const SHAKE_ANIMATION_TIMEOUT = 600;

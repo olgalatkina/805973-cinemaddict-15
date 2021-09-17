@@ -38,18 +38,15 @@ export const getWatchedMovies = (movies) => movies.filter((film) => film.isWatch
 export const getRank = (movies) => {
   const amount = movies.length;
 
-  switch (amount) {
-    case (amount === 0):
-      return Rank.NOTHING;
-    case (amount > 0 && amount <= 10):
-      return Rank.NOVICE;
-    case (amount > 10 && amount <= 20):
-      return Rank.FAN;
-    case (amount > 20):
-      return Rank.MUVI_BUFF;
+  if (amount === 0) {
+    return Rank.NOTHING;
+  } else if (amount > 0 && amount <= 10) {
+    return Rank.NOVICE;
+  } else if (amount > 10 && amount <= 20) {
+    return Rank.FAN;
   }
 
-  return Rank.NOTHING;
+  return Rank.MUVI_BUFF;
 };
 
 export const getLengthWatchList = (movies) => movies.filter((film) => film.isWatchlist).length;
